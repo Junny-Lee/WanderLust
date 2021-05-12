@@ -1,0 +1,162 @@
+<p>Weather Forecast</p>
+            <div id="weather_forecast">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Temperature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for weather in api_data_forecast.list %}
+                        {% if '12:00:00' in weather.dt_txt %}
+                        <tr>
+                            <td>{{ weather.dt_txt }}</td>
+                            <td>{{ weather.main.temp }} ℉</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>            
+            
+            <!-- for forecast! -->
+            <!-- <div id="weather_forecast_better_table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>6 AM</th>
+                            <th>9 AM</th>
+                            <th>12 PM</th>
+                            <th>3 PM</th>
+                            <th>6 PM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for weather in api_data_forecast.list %}
+                        <tr>
+                            <td>
+                                {% if '6:00:00' in weather.dt_txt %}
+                                    {{ weather.main.temp }} ℉
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if '9:00:00' in weather.dt_txt %}
+                                    {{ weather.main.temp }} ℉
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if '12:00:00' in weather.dt_txt %}
+                                    {{ weather.main.temp }} ℉
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if '15:00:00' in weather.dt_txt %}
+                                    {{ weather.main.temp }} ℉
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if '18:00:00' in weather.dt_txt %}
+                                    {{ weather.main.temp }} ℉
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> -->
+
+            <!-- <script>
+                var my_list = {{data.list}}
+            </script> -->
+
+            <!-- <div class="table3">
+
+                    {% if count == 5 %}
+                        <br>
+                    {% endif %}
+                    {% for weather in api_data_forecast.list %}
+                    <span>
+                        {% if '6:00:00' in weather.dt_txt %}
+                            {{ weather.main.temp }} ℉
+                            {% count = count + 1 %}
+                        {% endif %}
+                        {% if '9:00:00' in weather.dt_txt %}
+                            {{ weather.main.temp }} ℉
+                            {% count = count + 1 %}
+                        {% endif %}
+                        {% if '12:00:00' in weather.dt_txt %}
+                            {{ weather.main.temp }} ℉
+                            {% count = count + 1 %}
+                        {% endif %}
+                        {% if '15:00:00' in weather.dt_txt %}
+                            {{ weather.main.temp }} ℉
+                            {% count = count + 1 %}
+                        {% endif %}
+                        {% if '18:00:00' in weather.dt_txt %}
+                            {{ weather.main.temp }} ℉
+                            {% count = count + 1 %}
+                        {% endif %} 
+                    </span>
+                    {% endfor %}
+            </div> -->
+
+            <!-- {% for weather in api_data_forecast.list %}
+                {% if '12:00:00' in weather.dt_txt %}
+                <div class="weather">
+                    <p>Weather Forecast: </p>
+                    <p>Date and Time: {{ weather.dt_txt }}</p>
+                    <p>Temperature: {{ weather.main.temp }}</p>
+                </div>
+                {% endif %}
+            {% endfor %} -->
+
+
+
+
+
+
+            <!-- <div class="weather">
+                <p>Weather Here Right Now: </p>
+                <p>Temperature: {{ api_data.main.temp }}</p>
+                <p>Feels Like: {{ api_data.main.feels_like }}</p>
+                <p>Min Temp: {{ api_data.main.temp_min }}</p>
+                <p>Max Temp: {{ api_data.main.temp_max }}</p>
+                <br>
+                <p>Wind Speed: {{ api_data.wind.speed }} miles/hour</p>
+                <p>Humidity: {{ api_data.main.humidity }}%</p>
+                <p>Sunrise: {{ api_data.sys.sunrise }}</p>
+                <p>Sunset: {{ api_data.sys.sunset }}</p>
+                <p>note: the sunrise and sunset are in unix, UTC. need to convert to local time.</p>
+                <p>maybe this: https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript</p>
+            </div> -->
+
+
+
+
+
+            <div id="weather_forecast_better_table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ next_five_days.0 }}</th>
+                            <th>{{ next_five_days.1 }}</th>
+                            <th>{{ next_five_days.2 }}</th>
+                            <th>{{ next_five_days.3 }}</th>
+                            <th>{{ next_five_days.4 }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in array_of_five %}
+                        {{i}}
+                        <tr>
+                                <td>{{ day1_forecast.0 }}</td>
+                                <td>{{ day2_forecast.1 }}</td>
+                                <td>{{ day3_forecast.2 }}</td>
+                                <td>{{ day4_forecast.3 }}</td>
+                                <td>{{ day5_forecast.4 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>

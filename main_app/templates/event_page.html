@@ -27,7 +27,8 @@
     <p class="awesome">{{ this_event.address }}</p>
     <p class="awesome">{{ this_event.city }}, {{ this_event.state }} {{ this_event.zipcode }}</p>
     <p class="awesome">{{ this_event.date }} {{ this_event.time }}</p>
-    <p class="awesome">Creator: {{ logged_in_member.first_name }}</p>
+    <p class="awesome">Creator: {{ this_event.creator.first_name }}</p>
+    <!-- <p class="awesome">Creator: {{ logged_in_member.first_name }}</p> -->
 
     <p style="margin: 1rem 0rem; font-size: 1.2rem;">Number of people who joined: {{ count_of_members_of_this_event }}</p>
     {% if this_event.creator.id == logged_in_member.id %}

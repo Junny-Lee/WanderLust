@@ -3,6 +3,9 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, HttpResponse
 from datetime import date, datetime, timedelta
 import requests
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 from .models import *
 
@@ -155,12 +158,12 @@ def show_event(request, id):
     address = formatted_address + ",+" + formatted_city + ",+" + this_event.state # {address} needs to be in format: {1600+Amphitheatre+Parkway,+Mountain+View,+CA}
 
     # api calls for weather
-    data_forecast = requests.get(f'http://api.openweathermap.org/data/2.5/forecast?zip={zip_code},us&appid=49e20116f7a2742952b883c75a1ec1ab&units=imperial')
-    data_today = requests.get(f'http://api.openweathermap.org/data/2.5/weather?zip={zip_code},us&appid=8fd981d465951e4cedaf6b0c75187037&units=imperial') 
+    data_forecast = requests.get(f'http://api.openweathermap.org/data/2.5/forecast?zip={zip_code},us&appid={env("WEATHER_FORECAST_APIID")}&units=imperial')
+    data_today = requests.get(f'http://api.openweathermap.org/data/2.5/weather?zip={zip_code},us&appid={env("WEATHER_TODAY_APIID")}&units=imperial') 
     
     # api call for Geocoding (need to get long and lang)
         # from geocoding_api get the latitude and longitude
-    geocoding_api = requests.get(f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key=AIzaSyC5W3TzJIDqMfBWUItIOinF7bUPeg1iTPc').json()
+    geocoding_api = requests.get(f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={env("GOOGLE_GEO_KEY")}').json()
     latitude = geocoding_api['results'][0]['geometry']['location']['lat']
     longitude = geocoding_api['results'][0]['geometry']['location']['lng']
 
@@ -206,6 +209,7 @@ def show_event(request, id):
         'today' : today.date(),
         'next_five_days' : next_five_days,
         'api_data_forecast' : sorted_weather_arr,   # array of 25 temperatures at 5 times over 5 days
+        'api_key' : env("GOOGLE_MAP_KEY"),
     }
 
     return render(request, "event_page.html", context)

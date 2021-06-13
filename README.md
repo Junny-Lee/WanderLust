@@ -7,9 +7,7 @@ From here, the user can navigate into a category of activities to see the existi
 
 <img src="https://github.com/Junny-Lee/hangout_project_for_deployment/blob/main/images/NotLoggedInView.png" width="770">
 
-Let's sign into an existing account to see more features:
-- #### email: visitor@gmail.com
-- #### password: password
+Let's sign into an existing account to see more features.
 
 <img src="https://github.com/Junny-Lee/hangout_project_for_deployment/blob/main/images/Login.png" width="770">
 
